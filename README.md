@@ -1,2 +1,2 @@
 # sqlzoo-solutions
-Solutions to the challenges on http://sqlzoo.net
+Solutions for tasks at http://sqlzoo.net
