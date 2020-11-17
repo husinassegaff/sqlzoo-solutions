@@ -26,3 +26,14 @@ SELECT winner FROM nobel
 
 SELECT yr, subject, winner FROM nobel
     WHERE subject LIKE 'Liter%' AND ((yr >= 1980) AND (yr <= 1989))
+
+
+-- 6. Show all details of the presidential winners:
+--    - Theodore Roosevelt
+--    - Woodrow Wilson
+--    - Jimmy Carter
+--    - Barack Obama
+
+SELECT yr, subject, winner FROM nobel
+    WHERE (winner LIKE 'Theodore Roose%') OR (winner LIKE 'Woodrow Wi%')
+    OR (winner LIKE 'Jimmy Car%') OR (winner LIKE 'Barack Ob%')
