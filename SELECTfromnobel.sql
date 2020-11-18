@@ -37,3 +37,25 @@ SELECT yr, subject, winner FROM nobel
 SELECT yr, subject, winner FROM nobel
     WHERE (winner LIKE 'Theodore Roose%') OR (winner LIKE 'Woodrow Wi%')
     OR (winner LIKE 'Jimmy Car%') OR (winner LIKE 'Barack Ob%')
+
+
+-- 7. Show the winners with first name John
+
+SELECT winner FROM nobel
+    WHERE winner LIKE 'John%'
+
+
+-- 8. Show the year, subject, and name of Physics winners for 1980 
+--    together with the Chemistry winners for 1984.
+
+SELECT yr, subject, winner FROM nobel
+    WHERE ((subject LIKE 'Physics') AND (yr = 1980)) OR
+    ((subject LIKE 'Chemistry') AND (yr = 1984))
+
+
+-- 9. Show the year, subject, and name of winners for 1980 
+--    excluding Chemistry and Medicine
+
+SELECT yr, subject, winner FROM nobel
+    WHERE (yr = 1980) AND ((subject NOT LIKE 'Chemistry') AND
+    (subject NOT LIKE 'Medicine'))
