@@ -31,3 +31,38 @@ SELECT name, population FROM world
     WHERE (population > (SELECT population FROM world WHERE name = 'Canada'))
     AND (population < (SELECT population FROM world
      WHERE name = 'Poland'))
+
+    
+-- 5. Show the name and the population of each country in Europe. 
+--    Show the population as a percentage of the population of Germany.
+
+SELECT name, CONCAT(ROUND(100*population/(
+    SELECT population FROM world WHERE name = 'Germany'),0), '%') FROM world
+     WHERE continent LIKE 'Europe'
+
+
+-- 6. Which countries have a GDP greater than every country in Europe? 
+--    [Give the name only.] (Some countries may have NULL gdp values)
+
+SELECT name FROM world
+    WHERE gdp > ALL(SELECT gdp FROM world
+     WHERE (gdp > 0) AND (continent = 'Europe'))
+
+
+-- 7. Find the largest country (by area) in each continent, 
+--    show the continent, the name and the area:
+
+SELECT continent, name, area FROM world x
+    WHERE x.area >= ALL
+     (SELECT y.area FROM world y
+        WHERE (y.continent = x.continent)
+         AND (area > 0))
+
+
+-- 8. List each continent and the name of the country 
+--    that comes first alphabetically.
+
+SELECT continent, name FROM world x
+    WHERE x.name = (SELECT y.name FROM world y
+        WHERE y.continent = x.continent
+         ORDER BY name LIMIT 1)
