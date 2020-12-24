@@ -45,6 +45,12 @@ SELECT player FROM goal
 
 --  8. Instead show the name of all players who scored a goal against Germany.
 
-select player FROM goal
+SELECT player FROM goal
     JOIN game ON (game.id = goal.matchid && goal.teamid != 'GER'
         && (game.team2 = 'GER'))
+
+--  9. Show teamname and the total number of goals scored.
+
+SELECT teamname, COUNT(gtime) FROM eteam
+    JOIN goal ON (goal.teamid = eteam.id)
+        GROUP BY teamname
