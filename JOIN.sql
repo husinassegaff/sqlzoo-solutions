@@ -51,6 +51,20 @@ SELECT player FROM goal
 
 --  9. Show teamname and the total number of goals scored.
 
-SELECT teamname, COUNT(gtime) FROM eteam
+SELECT teamname, COUNT(gtime) AS goals FROM eteam
     JOIN goal ON (goal.teamid = eteam.id)
         GROUP BY teamname
+
+
+--  10. Show the stadium and the number of goals scored in each stadium.
+
+SELECT stadium, COUNT(gtime) AS goals FROM game 
+    JOIN goal ON (goal.matchid = game.id)
+        GROUP BY stadium
+
+
+--  11. For every match involving 'POL', show the matchid, date and the number of goals scored.
+
+SELECT matchid, mdate , COUNT(gtime) AS goals FROM game 
+    JOIN goal ON (goal.matchid = game.id AND (game.team1 = 'POL' OR game.team2 = 'POL'))
+        GROUP BY matchid, mdate
