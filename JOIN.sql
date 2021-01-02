@@ -68,3 +68,9 @@ SELECT stadium, COUNT(gtime) AS goals FROM game
 SELECT matchid, mdate , COUNT(gtime) AS goals FROM game 
     JOIN goal ON (goal.matchid = game.id AND (game.team1 = 'POL' OR game.team2 = 'POL'))
         GROUP BY matchid, mdate
+
+--  12. For every match where 'GER' scored, show matchid, match date and the number of goals scored by 'GER'
+
+SELECT  matchid, mdate, COUNT(gtime) AS goals FROM game
+    JOIN goal ON (goal.matchid = game.id AND (goal.teamid = 'GER'))
+        GROUP BY matchid, mdate
